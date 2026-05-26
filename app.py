@@ -6,12 +6,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# On Streamlit Cloud, ANTHROPIC_API_KEY comes from the secrets manager
-if "ANTHROPIC_API_KEY" not in os.environ:
+# On Streamlit Cloud, OPENAI_API_KEY comes from the secrets manager
+if "OPENAI_API_KEY" not in os.environ:
     try:
-        os.environ["ANTHROPIC_API_KEY"] = st.secrets["ANTHROPIC_API_KEY"]
+        os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
     except (KeyError, FileNotFoundError):
-        st.error("ANTHROPIC_API_KEY not set. Add it to .env (local) or Streamlit secrets (cloud).")
+        st.error("OPENAI_API_KEY not set. Add it to .env (local) or Streamlit secrets (cloud).")
         st.stop()
 
 # Auto-initialize the SQLite DB if it doesn't exist (e.g., first run on Streamlit Cloud)
