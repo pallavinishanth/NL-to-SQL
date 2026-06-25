@@ -1,6 +1,6 @@
 # NL to SQL Agent
 
-A multi-agent system built with LangChain + LangGraph that converts natural language questions into SQL queries and returns plain-English answers.
+A multi-agent system built with LangChain + LangGraph + MCP that converts natural language questions into SQL queries and returns plain-English answers. Agents never touch the DB directly — all DB access goes through the MCP server process.
 
 ## Architecture
 
