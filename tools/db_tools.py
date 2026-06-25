@@ -1,8 +1,19 @@
 import os
 from sqlalchemy import create_engine, text, inspect
+from dotenv import load_dotenv
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "..", "db", "store.db")
-engine = create_engine(f"sqlite:///{os.path.abspath(DB_PATH)}")
+load_dotenv()
+
+_database_url = os.getenv("DATABASE_URL")
+
+if _database_url:
+    # Normalize postgres:// -> postgresql:// (common with cloud providers)
+    if _database_url.startswith("postgres://"):
+        _database_url = _database_url.replace("postgres://", "postgresql://", 1)
+    engine = create_engine(_database_url)
+else:
+    _db_path = os.path.join(os.path.dirname(__file__), "..", "db", "store.db")
+    engine = create_engine(f"sqlite:///{os.path.abspath(_db_path)}")
 
 
 def get_schema() -> str:

@@ -1,7 +1,7 @@
 from langgraph.graph import StateGraph, END
 
 from state import AgentState
-from tools.db_tools import get_schema
+from tools.mcp_client import get_schema
 from agents.sql_writer import sql_writer_node
 from agents.validator import validator_node
 from agents.executor import executor_node
