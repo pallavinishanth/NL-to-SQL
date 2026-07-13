@@ -14,6 +14,13 @@ if "OPENAI_API_KEY" not in os.environ:
         st.error("OPENAI_API_KEY not set. Add it to .env (local) or Streamlit secrets (cloud).")
         st.stop()
 
+# DATABASE_URL must be in os.environ so the MCP subprocess inherits it
+if "DATABASE_URL" not in os.environ:
+    try:
+        os.environ["DATABASE_URL"] = st.secrets["DATABASE_URL"]
+    except (KeyError, FileNotFoundError):
+        pass  # Falls back to SQLite
+
 # Auto-initialize the SQLite DB if it doesn't exist (e.g., first run on Streamlit Cloud)
 _db_path = os.path.join(os.path.dirname(__file__), "db", "store.db")
 if not os.path.exists(_db_path):
