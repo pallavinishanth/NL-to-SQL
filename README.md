@@ -2,6 +2,9 @@
 
 A multi-agent system built with LangChain + LangGraph + MCP that converts natural language questions into SQL queries and returns plain-English answers. Agents never touch the DB directly — all DB access goes through the MCP server process.
 
+Deployed on Streamlit Community cloud at https://nl-to-sql-agent.streamlit.app
+
+
 ## Architecture
 
 ```
